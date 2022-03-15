@@ -41,13 +41,13 @@ struct Opts {
 fn show_temps(sys: &sysinfo::System) {
     println!(
         "{}",
-        format!("Component - current temp, max temp, crit temp")
+        format!("Component\t\tcurrent temp,\t\tmax temp,\t\tcrit temp")
             .purple()
             .on_black()
     );
     for component in sys.components() {
         println!(
-            "{:?}       {:?}°C,     {:?}°C,     {:?}°C",
+            "{0: <10}\t\t{1: <10}°C,\t\t{2: <10}°C,\t\t{3: <10}°C",
             component.label(),
             component.temperature(),
             component.max(),
