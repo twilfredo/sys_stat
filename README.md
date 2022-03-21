@@ -60,24 +60,24 @@ This tool can be used with `watch` for **continuous monitoring.**
 ```SHELL
 watch ./sys_stat -h
 
-Every 2.0s: ./sys_stat -h                                                          ArchDesktop: Fri Mar  4 14:34:48 2022
+Every 2.0s: ./target/debug/sys_stat -h                                             ArchDesktop: Mon Mar 21 22:29:58 2022
 
-Component - current temp, max temp, crit temp
-"Composite"       36.85°C,     83.85°C,     83.85°C
-"Composite"       46.85°C,     76.85°C,     79.85°C
-"Core 0"       51.0°C,     80.0°C,     100.0°C
-"Core 1"       49.0°C,     80.0°C,     100.0°C
-"Core 2"       51.0°C,     80.0°C,     100.0°C
-"Core 3"       51.0°C,     80.0°C,     100.0°C
-"Core 4"       51.0°C,     80.0°C,     100.0°C
-"Core 5"       51.0°C,     80.0°C,     100.0°C
-"edge"       58.0°C,     58.0°C,     100.0°C
-"junction"       60.0°C,     60.0°C,     110.0°C
-"mem"       62.0°C,     62.0°C,     100.0°C
-"Package id 0"       51.0°C,     80.0°C,     100.0°C
-"Sensor 1"       36.85°C,     65261.848°C,     0.0°C
-"Sensor 2"       54.85°C,     65261.848°C,     0.0°C
-"CPU"       27.8°C,     27.8°C,     0.0°C
+Component               current temp,           max temp,               crit temp
+Composite               43.85     °C,           83.85     °C,           83.85     °C
+Composite               42.85     °C,           76.85     °C,           79.85     °C
+Core 0                  45        °C,           80        °C,           100       °C
+Core 1                  46        °C,           80        °C,           100       °C
+Core 2                  47        °C,           80        °C,           100       °C
+Core 3                  48        °C,           80        °C,           100       °C
+Core 4                  48        °C,           80        °C,           100       °C
+Core 5                  61        °C,           80        °C,           100       °C
+edge                    54        °C,           54        °C,           100       °C
+junction                57        °C,           57        °C,           110       °C
+mem                     56        °C,           56        °C,           100       °C
+Package id 0            61        °C,           80        °C,           100       °C
+Sensor 1                43.85     °C,           65261.848 °C,           0         °C
+Sensor 2                49.85     °C,           65261.848 °C,           0         °C
+CPU                     27.8      °C,           27.8      °C,           0         °C
 
 ```
 or even
