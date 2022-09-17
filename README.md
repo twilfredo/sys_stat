@@ -13,7 +13,7 @@ Supported metrics:
 
 Example usage linux:
 ```SHELL
-$ ./sys_stat --help
+$ cargo run -- --help
 
 Simple program to monitor system statistics Can be used with `watch` for periodic statistics
 
@@ -21,83 +21,79 @@ USAGE:
     sys_stat [OPTIONS]
 
 OPTIONS:
-    -c, --cpu-info        cpu info
-    -d, --disk-info       disk stats
-    -f, --freq-cpu        cpu stats (freq/usage)
-    -h, --hw-temps        hardware temps
-        --help            Print help information
-    -n, --network-info
-    -o, --os-info         OS info
-    -r, --ram-info        ram/swap stats
-    -V, --version         Print version information
+    -c, --cpu-info         CPU info
+    -d, --disk-info        Disk stats
+    -f, --freq-cpu         CPU stats (freq/usage)
+    -h, --hw-temps         Hardware temps
+        --help             Print help information
+    -n, --network-info     
+    -o, --os-info          OS info
+    -r, --ram-info         Ram/Swap stats
+    -V, --version          Print version information
+    -w, --watch <WATCH>    Watch for specified seconds [default: 0]
 ```
 To see cpu info and current stats
 ```SHELL
-$ ./sys_stat -f -c
+$ cargo run -- -c -f
 
 CPU Statistics:
-Core 0: 4701Hz, 2.50%
-Core 1: 4702Hz, 2.56%
-Core 2: 4701Hz, 7.32%
-Core 3: 4700Hz, 7.32%
-Core 4: 4702Hz, 2.50%
-Core 5: 4702Hz, 5.00%
-Core 6: 4701Hz, 5.00%
-Core 7: 4702Hz, 2.63%
-Core 8: 4700Hz, 7.50%
-Core 9: 4702Hz, 5.00%
-Core 10: 4700Hz, 5.00%
-Core 11: 4700Hz, 9.76%
-Avg Usage 6.1983%
+Core 0: 2199Hz, 0.00%
+Core 1: 3400Hz, 0.00%
+Core 2: 3400Hz, 0.00%
+Core 3: 2200Hz, 0.00%
+Core 4: 3400Hz, 0.00%
+Core 5: 3400Hz, 0.00%
+Core 6: 2200Hz, 0.00%
+Core 7: 2310Hz, 0.00%
+Core 8: 3752Hz, 0.00%
+Core 9: 3400Hz, 0.00%
+Core 10: 3400Hz, 0.00%
+Core 11: 2200Hz, 0.00%
+Core 12: 3400Hz, 0.00%
+Core 13: 3523Hz, 0.00%
+Core 14: 3423Hz, 0.00%
+Core 15: 4699Hz, 0.00%
+Core 16: 3400Hz, 0.00%
+Core 17: 2199Hz, 0.00%
+Core 18: 2199Hz, 0.00%
+Core 19: 2604Hz, 0.00%
+Core 20: 2484Hz, 0.00%
+Core 21: 2199Hz, 0.00%
+Core 22: 2200Hz, 0.00%
+Core 23: 3400Hz, 0.00%
+Core 24: 3759Hz, 0.00%
+Core 25: 3760Hz, 0.00%
+Core 26: 3760Hz, 0.00%
+Core 27: 3759Hz, 0.00%
+Core 28: 3614Hz, 0.00%
+Core 29: 3400Hz, 0.00%
+Core 30: 2200Hz, 0.00%
+Core 31: 3400Hz, 0.00%
+Load Average: one minute: 0.64%, five minutes: 0.54%, fifteen minutes: 0.49%
 
 CPU info:
-Name - cpu0
-Brand - Intel(R) Core(TM) i5-10600K CPU @ 4.10GHz
-Vendor ID - GenuineIntel
-Cores - 12
+Name      - cpu
+Brand     - AMD Ryzen 9 5950X 16-Core Processor
+Vendor ID - AuthenticAMD
+Cores     - 16
 ```
-This tool can be used with `watch` for **continuous monitoring.**
+This tool can be used for **continuous monitoring.** With the option **[-w SECS]**
 ```SHELL
-watch ./sys_stat -h
+cargo run -- -w 2 -h
 
-Every 2.0s: ./target/debug/sys_stat -h                                             ArchDesktop: Mon Mar 21 22:29:58 2022
-
-Component               current temp,           max temp,               crit temp
-Composite               43.85     °C,           83.85     °C,           83.85     °C
-Composite               42.85     °C,           76.85     °C,           79.85     °C
-Core 0                  45        °C,           80        °C,           100       °C
-Core 1                  46        °C,           80        °C,           100       °C
-Core 2                  47        °C,           80        °C,           100       °C
-Core 3                  48        °C,           80        °C,           100       °C
-Core 4                  48        °C,           80        °C,           100       °C
-Core 5                  61        °C,           80        °C,           100       °C
-edge                    54        °C,           54        °C,           100       °C
-junction                57        °C,           57        °C,           110       °C
-mem                     56        °C,           56        °C,           100       °C
-Package id 0            61        °C,           80        °C,           100       °C
-Sensor 1                43.85     °C,           65261.848 °C,           0         °C
-Sensor 2                49.85     °C,           65261.848 °C,           0         °C
-CPU                     27.8      °C,           27.8      °C,           0         °C
-
-```
-or even
-```SHELL
-watch ./sys_stat -f
-
-Every 2.0s: ./sys_stat -f                                                          ArchDesktop: Fri Mar  4 14:35:19 2022
-
-CPU Statistics:
-Core 0: 4700Hz, 5.71%
-Core 1: 4700Hz, 8.33%
-Core 2: 4700Hz, 10.81%
-Core 3: 4701Hz, 8.33%
-Core 4: 4701Hz, 13.89%
-Core 5: 4700Hz, 10.81%
-Core 6: 4700Hz, 11.11%
-Core 7: 4700Hz, 8.11%
-Core 8: 4701Hz, 8.33%
-Core 9: 4700Hz, 16.22%
-Core 10: 4701Hz, 8.11%
-Core 11: 4702Hz, 5.71%
-Avg Usage 9.2166%
-```
+Component		current temp,		max temp,		crit temp
+amdgpu edge		52        °C,		52        °C,		100       °C
+amdgpu junction		55        °C,		56        °C,		110       °C
+amdgpu mem		64        °C,		64        °C,		100       °C
+asusec Chipset		65        °C,		65        °C,		0         °C
+asusec CPU		40        °C,		40        °C,		0         °C
+asusec Motherboard		39        °C,		39        °C,		0         °C
+asusec T_Sensor		-40       °C,		-40       °C,		0         °C
+asusec VRM		51        °C,		51        °C,		0         °C
+asusec Water_In		-40       °C,		-40       °C,		0         °C
+asusec Water_Out		-40       °C,		-40       °C,		0         °C
+iwlwifi_1 temp1		42        °C,		42        °C,		0         °C
+k10temp Tccd1		33.5      °C,		35.75     °C,		0         °C
+k10temp Tccd2		31.25     °C,		34.75     °C,		0         °C
+k10temp Tctl		36.75     °C,		37.25     °C,		0         °C
+nvme Composite WDS200T1X0E-00AFY0 temp1		56.85     °C,		56.85     °C,		87.85     °C
