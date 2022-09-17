@@ -86,15 +86,15 @@ impl Sensors {
         println!("Ram/Swap info:");
         println!(
             "total memory: {}",
-            human_bytes((self.sys.total_memory() * 1024) as f64)
+            human_bytes((self.sys.total_memory()) as f64)
         );
         println!(
             "used memory : {}",
-            human_bytes((self.sys.used_memory() * 1024) as f64)
+            human_bytes((self.sys.used_memory()) as f64)
         );
         println!(
             "free memory : {}",
-            human_bytes((self.sys.available_memory() * 1024) as f64)
+            human_bytes((self.sys.available_memory()) as f64)
         );
         println!(
             "Ram Usage   : {:.2}%",
@@ -102,21 +102,24 @@ impl Sensors {
         );
         println!(
             "total swap  : {}",
-            human_bytes((self.sys.total_swap() * 1024) as f64)
+            human_bytes((self.sys.total_swap()) as f64)
         );
         println!(
             "used swap   : {}",
-            human_bytes((self.sys.used_swap() * 1024) as f64)
+            human_bytes((self.sys.used_swap()) as f64)
         );
     }
 
     pub fn show_cpu_info(&self) {
         println!("CPU info:");
         let cpu = self.sys.global_cpu_info();
-        println!("Name - {}", cpu.name());
-        println!("Brand - {}", cpu.brand());
+        println!("Name      - {}", cpu.name());
+        println!("Brand     - {}", cpu.brand());
         println!("Vendor ID - {}", cpu.vendor_id());
-        println!("Cores - {}", self.sys.physical_core_count().unwrap_or(0));
+        println!(
+            "Cores     - {}",
+            self.sys.physical_core_count().unwrap_or(0)
+        );
     }
 
     pub fn show_cpu_stats(&self) {
