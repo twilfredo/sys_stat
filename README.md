@@ -15,7 +15,7 @@ Example usage linux:
 ```SHELL
 $ cargo run -- --help
 
-Simple program to monitor system statistics Can be used with `watch` for periodic statistics
+Simple program to monitor system statistics periodically.
 
 USAGE:
     sys_stat [OPTIONS]
