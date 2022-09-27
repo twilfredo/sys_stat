@@ -85,12 +85,15 @@ fn num_opts_matched(opts: &Opts) -> Result<usize, usize> {
     if opts.os_info {
         opt_count += 1;
     }
+
     if opts.hw_temps {
         opt_count += 1;
     }
+
     if opts.freq_cpu {
         opt_count += 1;
     }
+
     if opts.disk_info {
         opt_count += 1;
     }
