@@ -18,6 +18,7 @@ impl Sensors {
     }
 
     pub fn show_temps(&self) {
+        println!("");
         println!(
             "{}",
             format!("Component\t\tcurrent temp,\t\tmax temp,\t\tcrit temp")
@@ -39,6 +40,7 @@ impl Sensors {
     }
 
     pub fn show_os_info(&self) {
+        println!("");
         println!("OS info:");
         println!(
             "System name:             {}",
@@ -74,6 +76,7 @@ impl Sensors {
     }
 
     pub fn show_disk_info(&self) {
+        println!("");
         println!("Disk info:");
         println!("=> disks:");
         for disk in self.sys.disks() {
@@ -82,6 +85,7 @@ impl Sensors {
     }
 
     pub fn show_ram_info(&self) {
+        println!("");
         // RAM and swap information:
         println!("Ram/Swap info:");
         println!(
@@ -111,8 +115,10 @@ impl Sensors {
     }
 
     pub fn show_cpu_info(&self) {
+        println!("");
         println!("CPU info:");
         let cpu = self.sys.global_cpu_info();
+        // TODO: crate bug name/brand might not always be accurate.
         println!("Name      - {}", cpu.name());
         println!("Brand     - {}", cpu.brand());
         println!("Vendor ID - {}", cpu.vendor_id());
@@ -123,6 +129,7 @@ impl Sensors {
     }
 
     pub fn show_cpu_stats(&self) {
+        println!("");
         println!("CPU Statistics:");
         let mut core_count = 0;
         for proc in self.sys.cpus() {
@@ -143,14 +150,15 @@ impl Sensors {
     }
 
     pub fn show_network_stats(&self) {
+        println!("");
         println!("Network Stats:");
         println!("=> networks:");
         for (interface_name, data) in self.sys.networks() {
             println!(
-                "{}: {}/{} B",
+                "{}: {}/{}",
                 interface_name,
-                data.received(),
-                data.transmitted()
+                human_bytes(data.received() as f64),
+                human_bytes(data.transmitted() as f64)
             );
         }
     }
