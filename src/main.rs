@@ -9,6 +9,10 @@ use std::{thread, time};
 #[derive(Parser, Debug)]
 #[clap(author = "Wilfred MK", version = "0.1.5", about, long_about = None)]
 struct Opts {
+    /// Show all
+    #[clap(short, long)]
+    all: bool,
+
     /// CPU info
     #[clap(short, long)]
     cpu_info: bool,
@@ -118,9 +122,25 @@ fn num_opts_matched(opts: &Opts) -> Result<usize, usize> {
     Ok(opt_count)
 }
 
+fn set_all_opts_on(opts: &mut Opts) {
+    opts.os_info = true;
+    opts.hw_temps = true;
+    opts.freq_cpu = true;
+    opts.disk_info = true;
+    opts.cpu_info = true;
+    opts.ram_info = true;
+    opts.network_info = true;
+}
+
 fn main() -> Result<(), i32> {
     let mut sys = sensors::system::Sensors::new();
-    let opts = Opts::parse();
+    let mut opts = Opts::parse();
+
+    if opts.all {
+        // Display all metrics
+        set_all_opts_on(&mut opts);
+    }
+
     // If no metric are specified
     if num_opts_matched(&opts).is_err() {
         println!("Must specify a metric to read");
