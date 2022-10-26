@@ -1,4 +1,4 @@
-# sys_stat utility tool
+# System Metrics Monitor - CLI Tool
 
 This cmd line tool provides easy access for system statistics to be displayed to user. Using the `sysinfo` crate, the app should be supported across all major OSs (Linux/Windows/Mac/OBSD). Currently tested only on Linux.
 
